@@ -2,7 +2,6 @@ import React from 'react';
 import { MenuItem, CartItem } from '../types';
 import { useCategories } from '../hooks/useCategories';
 import MenuItemCard from './MenuItemCard';
-import MobileNav from './MobileNav';
 
 // Preload images for better performance
 const preloadImages = (items: MenuItem[]) => {
@@ -44,7 +43,7 @@ const Menu: React.FC<MenuProps> = ({ menuItems, addToCart, cartItems, updateQuan
     setActiveCategory(categoryId);
     const element = document.getElementById(categoryId);
     if (element) {
-      const headerHeight = 64; // Header height
+      const headerHeight = 80; // Header height
       const mobileNavHeight = 60; // Mobile nav height
       const offset = headerHeight + mobileNavHeight + 20; // Extra padding
       const elementPosition = element.offsetTop - offset;
@@ -87,48 +86,55 @@ const Menu: React.FC<MenuProps> = ({ menuItems, addToCart, cartItems, updateQuan
 
   return (
     <>
-      <MobileNav 
-        activeCategory={activeCategory}
-        onCategoryClick={handleCategoryClick}
-      />
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-noto font-semibold text-black mb-4">Our Menu</h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">
-          Discover our selection of authentic dim sum, flavorful noodles, and traditional Asian dishes, 
-          all prepared with fresh ingredients and authentic techniques.
-        </p>
-      </div>
+      <main className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-primary-50/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          {/* Hero Section */}
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="text-5xl md:text-6xl font-heading text-primary-600 mb-4 tracking-wide">
+              OUR MENU
+            </h2>
+            <div className="h-1 w-24 bg-gradient-primary mx-auto mb-6 rounded-full"></div>
+            <p className="text-lg font-body text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              Discover our premium selection of delicious dishes crafted with passion and served with excellence.
+            </p>
+          </div>
 
-      {categories.map((category) => {
-        const categoryItems = menuItems.filter(item => item.category === category.id);
-        
-        if (categoryItems.length === 0) return null;
-        
-        return (
-          <section key={category.id} id={category.id} className="mb-16">
-            <div className="flex items-center mb-8">
-              <span className="text-3xl mr-3">{category.icon}</span>
-              <h3 className="text-3xl font-noto font-medium text-black">{category.name}</h3>
-            </div>
+          {categories.map((category) => {
+            const categoryItems = menuItems.filter(item => item.category === category.id);
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {categoryItems.map((item) => {
-                const cartItem = cartItems.find(cartItem => cartItem.id === item.id);
-                return (
-                  <MenuItemCard
-                    key={item.id}
-                    item={item}
-                    onAddToCart={addToCart}
-                    quantity={cartItem?.quantity || 0}
-                    onUpdateQuantity={updateQuantity}
-                  />
-                );
-              })}
-            </div>
-          </section>
-        );
-      })}
+            if (categoryItems.length === 0) return null;
+            
+            return (
+              <section key={category.id} id={category.id} className="mb-20 animate-slide-up">
+                {/* Category Header */}
+                <div className="flex items-center justify-center mb-10">
+                  <div className="flex items-center space-x-4 bg-white rounded-2xl shadow-lg px-8 py-4 border-2 border-primary-100">
+                    <span className="text-4xl">{category.icon}</span>
+                    <h3 className="text-3xl font-heading text-primary-700 tracking-wide">
+                      {category.name.toUpperCase()}
+                    </h3>
+                  </div>
+                </div>
+                
+                {/* Menu Items Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {categoryItems.map((item) => {
+                    const cartItem = cartItems.find(cartItem => cartItem.id === item.id);
+                    return (
+                      <MenuItemCard
+                        key={item.id}
+                        item={item}
+                        onAddToCart={addToCart}
+                        quantity={cartItem?.quantity || 0}
+                        onUpdateQuantity={updateQuantity}
+                      />
+                    );
+                  })}
+                </div>
+              </section>
+            );
+          })}
+        </div>
       </main>
     </>
   );

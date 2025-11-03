@@ -2,8 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ramen Yard Custom Styles */
-/* Minimal helpers for ramen palette when needed outside tailwind tokens */
+/* ClickEats Custom Styles */
+
+/* Ramen Yard Custom Styles - Keep for admin backward compatibility */
 .bg-ramen-cream { background-color: #FFF3E0; }
 .bg-ramen-beige { background-color: #F7E7CE; }
 .text-ramen-red { color: #D7263D; }
@@ -21,10 +22,52 @@
   display: none;
 }
 
+/* Custom scrollbar for modern look */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1d419d;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #17348c;
+}
+
 /* Image loading optimization */
 img {
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent text selection on buttons and interactive elements */
+button {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+/* Focus visible for better accessibility */
+:focus-visible {
+  outline: 2px solid #1d419d;
+  outline-offset: 2px;
+}
+
+/* Disable focus outline for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
 /* Preload critical images */
