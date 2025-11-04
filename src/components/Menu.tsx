@@ -87,14 +87,14 @@ const Menu: React.FC<MenuProps> = ({ menuItems, addToCart, cartItems, updateQuan
   return (
     <>
       <main className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-primary-50/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
           {/* Hero Section */}
-          <div className="text-center mb-16 animate-fade-in">
-            <h2 className="text-5xl md:text-6xl font-heading text-primary-600 mb-4 tracking-wide">
+          <div className="text-center mb-8 sm:mb-12 md:mb-16 animate-fade-in">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading text-primary-600 mb-3 md:mb-4 tracking-wide">
               OUR MENU
             </h2>
-            <div className="h-1 w-24 bg-gradient-primary mx-auto mb-6 rounded-full"></div>
-            <p className="text-lg font-body text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            <div className="h-1 w-16 sm:w-20 md:w-24 bg-gradient-primary mx-auto mb-4 md:mb-6 rounded-full"></div>
+            <p className="text-sm sm:text-base md:text-lg font-body text-gray-600 max-w-2xl mx-auto leading-relaxed px-4">
               Discover our premium selection of delicious dishes crafted with passion and served with excellence.
             </p>
           </div>
@@ -105,19 +105,19 @@ const Menu: React.FC<MenuProps> = ({ menuItems, addToCart, cartItems, updateQuan
             if (categoryItems.length === 0) return null;
             
             return (
-              <section key={category.id} id={category.id} className="mb-20 animate-slide-up">
+              <section key={category.id} id={category.id} className="mb-12 sm:mb-16 md:mb-20 animate-slide-up">
                 {/* Category Header */}
-                <div className="flex items-center justify-center mb-10">
-                  <div className="flex items-center space-x-4 bg-white rounded-2xl shadow-lg px-8 py-4 border-2 border-primary-100">
-                    <span className="text-4xl">{category.icon}</span>
-                    <h3 className="text-3xl font-heading text-primary-700 tracking-wide">
+                <div className="flex items-center justify-center mb-6 sm:mb-8 md:mb-10">
+                  <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4 bg-white rounded-xl sm:rounded-2xl shadow-lg px-4 py-3 sm:px-6 sm:py-3.5 md:px-8 md:py-4 border-2 border-primary-100">
+                    <span className="text-2xl sm:text-3xl md:text-4xl">{category.icon}</span>
+                    <h3 className="text-lg sm:text-2xl md:text-3xl font-heading text-primary-700 tracking-wide">
                       {category.name.toUpperCase()}
                     </h3>
                   </div>
                 </div>
                 
                 {/* Menu Items Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
                   {categoryItems.map((item) => {
                     const cartItem = cartItems.find(cartItem => cartItem.id === item.id);
                     return (

@@ -93,9 +93,9 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
 
   return (
     <>
-      <div className={`bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 overflow-hidden group border-2 border-gray-100 hover:border-primary-200 ${!item.available ? 'opacity-60' : ''}`}>
+      <div className={`bg-white rounded-xl md:rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 overflow-hidden group border-2 border-gray-100 hover:border-primary-200 ${!item.available ? 'opacity-60' : ''}`}>
         {/* Image Container with Badges */}
-        <div className="relative h-56 bg-gradient-to-br from-primary-50 to-primary-100 overflow-hidden">
+        <div className="relative h-40 sm:h-48 md:h-56 bg-gradient-to-br from-primary-50 to-primary-100 overflow-hidden">
           {item.image ? (
             <img
               src={item.image}
@@ -117,77 +117,77 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           
           {/* Badges */}
-          <div className="absolute top-3 left-3 flex flex-col gap-2">
+          <div className="absolute top-2 left-2 md:top-3 md:left-3 flex flex-col gap-1 md:gap-2">
             {item.isOnDiscount && item.discountPrice && (
-              <div className="bg-gradient-to-r from-red-500 to-pink-600 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg animate-pulse flex items-center space-x-1">
-                <Sparkles className="h-3 w-3" />
+              <div className="bg-gradient-to-r from-red-500 to-pink-600 text-white text-[10px] md:text-xs font-bold px-2 py-1 md:px-4 md:py-2 rounded-full shadow-lg animate-pulse flex items-center space-x-1">
+                <Sparkles className="h-2 w-2 md:h-3 md:w-3" />
                 <span>SALE</span>
               </div>
             )}
             {item.popular && (
-              <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg flex items-center space-x-1">
-                <span>⭐</span>
+              <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-[10px] md:text-xs font-bold px-2 py-1 md:px-4 md:py-2 rounded-full shadow-lg flex items-center space-x-1">
+                <span className="text-xs md:text-sm">⭐</span>
                 <span>POPULAR</span>
               </div>
             )}
           </div>
           
           {!item.available && (
-            <div className="absolute top-3 right-3 bg-gray-800 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg">
+            <div className="absolute top-2 right-2 md:top-3 md:right-3 bg-gray-800 text-white text-[10px] md:text-xs font-bold px-2 py-1 md:px-4 md:py-2 rounded-full shadow-lg">
               UNAVAILABLE
             </div>
           )}
           
           {/* Discount Percentage Badge */}
           {item.isOnDiscount && item.discountPrice && (
-            <div className="absolute bottom-3 right-3 bg-white text-primary-600 text-sm font-bold px-3 py-1.5 rounded-full shadow-lg border-2 border-primary-200">
+            <div className="absolute bottom-2 right-2 md:bottom-3 md:right-3 bg-white text-primary-600 text-xs md:text-sm font-bold px-2 py-1 md:px-3 md:py-1.5 rounded-full shadow-lg border-2 border-primary-200">
               {Math.round(((item.basePrice - item.discountPrice) / item.basePrice) * 100)}% OFF
             </div>
           )}
         </div>
         
         {/* Content */}
-        <div className="p-6">
-          <div className="flex items-start justify-between mb-3">
-            <h4 className="text-xl font-heading text-primary-900 leading-tight flex-1 pr-2 tracking-wide">
+        <div className="p-3 sm:p-4 md:p-6">
+          <div className="flex items-start justify-between mb-2 md:mb-3">
+            <h4 className="text-sm sm:text-base md:text-xl font-heading text-primary-900 leading-tight flex-1 pr-1 md:pr-2 tracking-wide">
               {item.name.toUpperCase()}
             </h4>
             {item.variations && item.variations.length > 0 && (
-              <div className="text-xs font-body text-primary-600 bg-primary-50 px-3 py-1 rounded-full whitespace-nowrap border border-primary-200">
+              <div className="text-[10px] md:text-xs font-body text-primary-600 bg-primary-50 px-2 py-0.5 md:px-3 md:py-1 rounded-full whitespace-nowrap border border-primary-200">
                 {item.variations.length} sizes
               </div>
             )}
           </div>
           
-          <p className={`text-sm font-body mb-4 leading-relaxed ${!item.available ? 'text-gray-400' : 'text-gray-600'}`}>
+          <p className={`text-xs sm:text-sm font-body mb-3 md:mb-4 leading-relaxed line-clamp-2 md:line-clamp-none ${!item.available ? 'text-gray-400' : 'text-gray-600'}`}>
             {!item.available ? 'Currently Unavailable' : item.description}
           </p>
           
           {/* Pricing Section */}
-          <div className="flex items-center justify-between mb-5">
+          <div className="flex items-center justify-between mb-3 md:mb-5">
             <div className="flex-1">
               {item.isOnDiscount && item.discountPrice ? (
-                <div className="space-y-1">
-                  <div className="flex items-center space-x-2">
-                    <span className="text-3xl font-heading text-primary-600">
+                <div className="space-y-0.5 md:space-y-1">
+                  <div className="flex items-center space-x-1 md:space-x-2">
+                    <span className="text-lg sm:text-xl md:text-3xl font-heading text-primary-600">
                       ₱{item.discountPrice.toFixed(2)}
                     </span>
-                    <span className="text-sm font-body text-gray-400 line-through">
+                    <span className="text-[10px] sm:text-xs md:text-sm font-body text-gray-400 line-through">
                       ₱{item.basePrice.toFixed(2)}
                     </span>
                   </div>
-                  <div className="text-xs font-body text-green-600 font-semibold">
+                  <div className="text-[10px] md:text-xs font-body text-green-600 font-semibold">
                     Save ₱{(item.basePrice - item.discountPrice).toFixed(2)}
                   </div>
                 </div>
               ) : (
-                <div className="text-3xl font-heading text-primary-600">
+                <div className="text-lg sm:text-xl md:text-3xl font-heading text-primary-600">
                   ₱{item.basePrice.toFixed(2)}
                 </div>
               )}
               
               {item.variations && item.variations.length > 0 && (
-                <div className="text-xs font-body text-gray-500 mt-1">
+                <div className="text-[10px] md:text-xs font-body text-gray-500 mt-0.5 md:mt-1">
                   Starting price
                 </div>
               )}
@@ -198,31 +198,41 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
               {!item.available ? (
                 <button
                   disabled
-                  className="bg-gray-200 text-gray-500 px-5 py-3 rounded-xl cursor-not-allowed font-body font-medium text-sm"
+                  className="bg-gray-200 text-gray-500 px-3 py-2 md:px-5 md:py-3 rounded-lg md:rounded-xl cursor-not-allowed font-body font-medium text-xs md:text-sm"
                 >
                   Unavailable
                 </button>
               ) : quantity === 0 ? (
                 <button
                   onClick={handleAddToCart}
-                  className="bg-gradient-primary text-white px-6 py-3 rounded-xl hover:shadow-lg transition-all duration-300 transform hover:scale-105 font-body font-semibold text-sm shadow-md hover:shadow-primary-300/50"
+                  className="bg-gradient-primary text-white px-3 py-2 md:px-6 md:py-3 rounded-lg md:rounded-xl hover:shadow-lg transition-all duration-300 transform hover:scale-105 font-body font-semibold text-xs md:text-sm shadow-md hover:shadow-primary-300/50 whitespace-nowrap"
                 >
-                  {item.variations?.length || item.addOns?.length ? 'Customize' : 'Add to Cart'}
+                  {item.variations?.length || item.addOns?.length ? (
+                    <>
+                      <span className="hidden sm:inline">Customize</span>
+                      <span className="sm:hidden">+</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="hidden sm:inline">Add to Cart</span>
+                      <span className="sm:hidden">Add</span>
+                    </>
+                  )}
                 </button>
               ) : (
-                <div className="flex items-center space-x-2 bg-gradient-primary-soft rounded-xl p-1.5 border-2 border-primary-300 shadow-sm">
+                <div className="flex items-center space-x-1 md:space-x-2 bg-gradient-primary-soft rounded-lg md:rounded-xl p-1 md:p-1.5 border-2 border-primary-300 shadow-sm">
                   <button
                     onClick={handleDecrement}
-                    className="p-2 hover:bg-primary-200 rounded-lg transition-colors duration-200 hover:scale-110"
+                    className="p-1 md:p-2 hover:bg-primary-200 rounded-md md:rounded-lg transition-colors duration-200 hover:scale-110"
                   >
-                    <Minus className="h-4 w-4 text-primary-700" />
+                    <Minus className="h-3 w-3 md:h-4 md:w-4 text-primary-700" />
                   </button>
-                  <span className="font-bold font-body text-primary-900 min-w-[32px] text-center">{quantity}</span>
+                  <span className="font-bold font-body text-primary-900 min-w-[24px] md:min-w-[32px] text-center text-sm md:text-base">{quantity}</span>
                   <button
                     onClick={handleIncrement}
-                    className="p-2 hover:bg-primary-200 rounded-lg transition-colors duration-200 hover:scale-110"
+                    className="p-1 md:p-2 hover:bg-primary-200 rounded-md md:rounded-lg transition-colors duration-200 hover:scale-110"
                   >
-                    <Plus className="h-4 w-4 text-primary-700" />
+                    <Plus className="h-3 w-3 md:h-4 md:w-4 text-primary-700" />
                   </button>
                 </div>
               )}
@@ -231,8 +241,8 @@ const MenuItemCard: React.FC<MenuItemCardProps> = ({
 
           {/* Add-ons indicator */}
           {item.addOns && item.addOns.length > 0 && (
-            <div className="flex items-center space-x-2 text-xs font-body text-primary-600 bg-primary-50 px-3 py-2 rounded-lg border border-primary-100">
-              <Sparkles className="h-3 w-3" />
+            <div className="flex items-center space-x-1 md:space-x-2 text-[10px] md:text-xs font-body text-primary-600 bg-primary-50 px-2 py-1.5 md:px-3 md:py-2 rounded-lg border border-primary-100">
+              <Sparkles className="h-2.5 w-2.5 md:h-3 md:w-3" />
               <span className="font-medium">{item.addOns.length} add-on{item.addOns.length > 1 ? 's' : ''} available</span>
             </div>
           )}
